@@ -4,7 +4,9 @@ const phrases = {
   APP_NAME: 'Super Awesome Golf Leaderboard',
   BUTTONS: {
     ADD_NEW: 'Add New Golfer',
+    CANCEL: 'Cancel',
     DELETE: 'Del',
+    SAVE: 'Save',
   },
   FORMS: {
     LABELS: {

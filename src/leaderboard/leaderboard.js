@@ -13,18 +13,18 @@ export default class Leaderboard extends Component {
     return (
       <table style={styles.tableStyle}>
         <thead>
-          <tr>
-            <th>{polyglot.t('NAME')}</th>
-            <th>{polyglot.t('SCORE')}</th>
-            <th></th>
+          <tr style={styles.tableRowStyle}>
+            <th style={{ ...styles.tableCellStyle, borderTop: 0, }}>{polyglot.t('NAME')}</th>
+            <th style={{ ...styles.tableCellStyle, borderTop: 0, }}>{polyglot.t('SCORE')}</th>
+            <th style={{ ...styles.tableCellStyle, borderTop: 0, }}></th>
           </tr>
         </thead>
         <tbody>
           {this.props.golfers.map((golfer, i) => {
-            return <tr key={i}>
-              <td>{`${golfer.lastName}, ${golfer.firstName}`}</td>
-              <td>{golfer.score}</td>
-              <td>
+            return <tr key={i} style={styles.tableRowStyle}>
+              <td style={{ ...styles.tableCellStyle, borderTop: 0, }}>{`${golfer.lastName}, ${golfer.firstName}`}</td>
+              <td style={{ ...styles.tableCellStyle, borderTop: 0, }}>{golfer.score}</td>
+              <td style={{ ...styles.tableCellStyle, borderTop: 0, borderRight: 0 }}>
                 <button
                   onClick={() => this.deleteGolfer(golfer.id)}
                   style={styles.deleteButtonStyle}
