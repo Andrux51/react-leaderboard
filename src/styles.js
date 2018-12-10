@@ -1,3 +1,7 @@
+const appStyle = {
+    margin: '30px'
+};
+
 const deleteButtonStyle = {
     background: 'none',
     border: 'none',
@@ -8,6 +12,7 @@ const tableStyle = {
 };
 
 export default {
+    appStyle,
     deleteButtonStyle,
     tableStyle,
 };

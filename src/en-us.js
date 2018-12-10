@@ -1,6 +1,7 @@
 import Polyglot from 'node-polyglot';
 
 const phrases = {
+  APP_NAME: 'Super Awesome Golf Leaderboard',
   BUTTONS: {
     ADD_NEW: 'Add New Golfer',
     DELETE: 'Del',

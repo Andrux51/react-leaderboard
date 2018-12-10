@@ -7,7 +7,6 @@ export default class Leaderboard extends Component {
     this.setState(() => {
 
     });
-    console.log('hi');
   };
 
   render() {

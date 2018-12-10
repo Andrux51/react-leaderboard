@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import polyglot from './en-us';
+import styles from './styles';
 import GolferForm from './golferForm/golferForm';
 import Leaderboard from './leaderboard/leaderboard';
 
@@ -19,7 +20,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <div id="appMain">
+      <div id="appMain" style={styles.appStyle}>
+        <h1>{polyglot.t('APP_NAME')}</h1>
         <GolferForm />
         <Leaderboard golfers={this.state.golfers} />
       </div>
