@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import polyglot from './en-us';
+import GolferForm from './golferForm/golferForm';
+import Leaderboard from './leaderboard/leaderboard';
 
-class App extends Component {
+export default class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      golfers: [{
+        id: 0,
+        firstName: 'John',
+        lastName: 'Daly',
+        score: 99,
+      }],
+    };
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div id="appMain">
+        <GolferForm />
+        <Leaderboard golfers={this.state.golfers} />
       </div>
     );
   }
-}
-
-export default App;
+};
