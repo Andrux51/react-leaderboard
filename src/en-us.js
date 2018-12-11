@@ -17,6 +17,7 @@ const phrases = {
   },
   NAME: 'Name',
   SCORE: 'Score',
+  STANDING: 'Standing',
 };
 
 export default new Polyglot({phrases});

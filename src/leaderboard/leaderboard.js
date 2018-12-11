@@ -17,6 +17,10 @@ export default class Leaderboard extends Component {
     return sortWith(sortFields, this.props.golfers);
   };
 
+  getStanding = golfer => {
+    const standing = golfer.score - this.props.coursePar;
+    return (standing <= 0 ? '' : '+') + standing;
+  };
 
   stripeEvenRows = index => {
     // because index 0 (even) is row 1 (odd) - the logic might *look* backwards but it's not
@@ -30,6 +34,7 @@ export default class Leaderboard extends Component {
           <tr>
             <th style={styles.tableHeaderStyle}>{polyglot.t('NAME')}</th>
             <th style={styles.tableHeaderStyle}>{polyglot.t('SCORE')}</th>
+            <th style={styles.tableHeaderStyle}>{polyglot.t('STANDING')}</th>
             <th style={styles.tableHeaderLastChildStyle}></th>
           </tr>
         </thead>
@@ -38,6 +43,7 @@ export default class Leaderboard extends Component {
             return <tr key={golfer.id} style={this.stripeEvenRows(i)}>
               <td style={styles.tableCellStyle}>{`${golfer.lastName}, ${golfer.firstName}`}</td>
               <td style={styles.tableCellStyle}>{golfer.score}</td>
+              <td style={styles.tableCellStyle}>{this.getStanding(golfer)}</td>
               <td style={styles.tableCellLastChildStyle}>
                 <button
                   onClick={() => this.deleteGolfer(golfer.id)}

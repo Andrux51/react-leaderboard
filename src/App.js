@@ -4,12 +4,18 @@ import polyglot from './en-us';
 import styles from './styles';
 import GolferForm from './golferForm/golferForm';
 import Leaderboard from './leaderboard/leaderboard';
+import CourseInfo from './courseInfo/courseInfo';
 
 export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
+      courseInfo: {
+        location: 'Kanorado',
+        name: 'Pebble Atoll',
+        par: 72,
+      },
       golfers: [{
         id: 0,
         firstName: 'John',
@@ -57,6 +63,7 @@ export default class App extends Component {
       <div id="appMain" style={styles.appStyle}>
         <h1 style={styles.baseStyle}>{polyglot.t('APP_NAME')}</h1>
         <GolferForm onSubmit={golfer => this.addGolfer(golfer)} />
+        <CourseInfo info={this.state.courseInfo} />
         <Leaderboard golfers={this.state.golfers} coursePar={this.state.courseInfo.par} onDelete={id => this.deleteGolfer(id)} />
       </div>
     );
