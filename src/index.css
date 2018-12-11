@@ -12,3 +12,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.newGolferForm {
+  display: flex;
+  flex-direction: column;
+}
+.formInputLabel {
+  display: flex;
+  margin: 15px 0;
+}
+
+.formInputLabel > span {
+  flex: 0.1;
+  font-weight: bold;
+  margin-right: 15px;
+  text-align: right;
+}
+
+.formInputLabel > input {
+  flex: 0.2;
+}
+
+.formButtonGroup {
+  display: flex;
+  text-align: right;
+}
+.formButton {
+  flex: 0.1;
+  width: fit-content;
+  margin: 0 15px;
+}

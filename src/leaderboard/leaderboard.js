@@ -1,33 +1,47 @@
 import React, { Component } from 'react';
+import { ascend, prop, sortWith } from 'ramda';
 import polyglot from '../en-us';
 import styles from '../styles';
 
 export default class Leaderboard extends Component {
-  deleteGolfer = golfer => {
-    this.setState(() => {
+  deleteGolfer = id => {
+    this.props.onDelete(id);
+  };
 
-    });
+  getSortedGolfers = () => {
+    const sortFields = [
+      ascend(prop('score')),
+      ascend(prop('lastName')),
+    ];
+
+    return sortWith(sortFields, this.props.golfers);
+  };
+
+
+  stripeEvenRows = index => {
+    // because index 0 (even) is row 1 (odd) - the logic might *look* backwards but it's not
+    return index % 2 === 0 ? styles.oddRow : styles.evenRow;
   };
 
   render() {
     return (
       <table style={styles.tableStyle}>
         <thead>
-          <tr style={styles.tableRowStyle}>
-            <th style={{ ...styles.tableCellStyle, borderTop: 0, }}>{polyglot.t('NAME')}</th>
-            <th style={{ ...styles.tableCellStyle, borderTop: 0, }}>{polyglot.t('SCORE')}</th>
-            <th style={{ ...styles.tableCellStyle, borderTop: 0, }}></th>
+          <tr>
+            <th style={styles.tableHeaderStyle}>{polyglot.t('NAME')}</th>
+            <th style={styles.tableHeaderStyle}>{polyglot.t('SCORE')}</th>
+            <th style={styles.tableHeaderLastChildStyle}></th>
           </tr>
         </thead>
         <tbody>
-          {this.props.golfers.map((golfer, i) => {
-            return <tr key={i} style={styles.tableRowStyle}>
-              <td style={{ ...styles.tableCellStyle, borderTop: 0, }}>{`${golfer.lastName}, ${golfer.firstName}`}</td>
-              <td style={{ ...styles.tableCellStyle, borderTop: 0, }}>{golfer.score}</td>
-              <td style={{ ...styles.tableCellStyle, borderTop: 0, borderRight: 0 }}>
+          {this.getSortedGolfers().map((golfer, i) => {
+            return <tr key={golfer.id} style={this.stripeEvenRows(i)}>
+              <td style={styles.tableCellStyle}>{`${golfer.lastName}, ${golfer.firstName}`}</td>
+              <td style={styles.tableCellStyle}>{golfer.score}</td>
+              <td style={styles.tableCellLastChildStyle}>
                 <button
                   onClick={() => this.deleteGolfer(golfer.id)}
-                  style={styles.deleteButtonStyle}
+                  style={styles.textButtonStyle}
                 >
                   {polyglot.t('BUTTONS.DELETE')}
                 </button>
